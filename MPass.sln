@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MPass", "MPass\MPass.csproj", "{328D1776-77E1-44C3-B786-1E00C81A84B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MPassTests", "MPassTests\MPassTests.csproj", "{70F44B66-EA26-4E22-880A-E89EEB2066EB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{328D1776-77E1-44C3-B786-1E00C81A84B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{328D1776-77E1-44C3-B786-1E00C81A84B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{328D1776-77E1-44C3-B786-1E00C81A84B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{328D1776-77E1-44C3-B786-1E00C81A84B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70F44B66-EA26-4E22-880A-E89EEB2066EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70F44B66-EA26-4E22-880A-E89EEB2066EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70F44B66-EA26-4E22-880A-E89EEB2066EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70F44B66-EA26-4E22-880A-E89EEB2066EB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

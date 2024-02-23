@@ -5,12 +5,27 @@ namespace MPass;
 public class TokenWord : ITokenSource
 {
     private string[] _wordlist = new string[] { };
+    private Func<string, string> _transform;
 
     public Random Random { private get; set; } = new Random();
 
-    public TokenWord(IEnumerable<string> wordList)
+    public TokenWord(IEnumerable<string> wordList) : this(wordList, t => t)
+    {
+    }
+
+    public TokenWord(TokenWord tw) : this(tw._wordlist)
+    {
+    }
+
+    public TokenWord(TokenWord tw, Func<string, string> transform) : this(tw._wordlist, transform)
+    {
+    }
+
+    public TokenWord(IEnumerable<string> wordList, Func<string, string> transform)
     {
         _wordlist = wordList.ToArray();
+        _transform = transform;
+
         if (_wordlist.Length < 1)
         {
             _wordlist = new[] { "tacos, burgers, salads" };
@@ -21,7 +36,7 @@ public class TokenWord : ITokenSource
     public string GetToken()
     {
          var idx = Random.Next(_wordlist.Length);
-         return _wordlist[idx].ToString();
+         return _transform(_wordlist[idx]);
     }
 
 

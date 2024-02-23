@@ -12,7 +12,7 @@ public class TokenChar : ITokenSource
     public const string AsciiSymbols = "!@#$%^&*()-_=+,./<>?;':\"[]\\{}|`~";
 
     public Random Random { private get; set; } = new Random();
-    private readonly string _charset;
+    public string Charset { get; }
 
 
     /// <summary>
@@ -32,18 +32,18 @@ public class TokenChar : ITokenSource
     /// <exception cref="ArgumentException">Thrown if there are zero characters in the set.</exception>
     public TokenChar(string[] charset)
     {
-        _charset = string.Concat(charset);
-        if (_charset.Length < 1)
+        Charset = string.Concat(charset);
+        if (Charset.Length < 1)
         {
-            _charset = UpperAsciiLetters;
+            Charset = UpperAsciiLetters;
             throw new ArgumentException("No characters in charset.");
         }
     }
 
     public string GetToken()
     {
-        var idx = Random.Next(_charset.Length);
-        return _charset[idx].ToString();
+        var idx = Random.Next(Charset.Length);
+        return Charset[idx].ToString();
     }
 
     public IEnumerator<string> GetEnumerator()

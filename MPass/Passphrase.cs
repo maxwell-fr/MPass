@@ -1,15 +1,31 @@
-﻿namespace MPass;
+﻿using System.Collections;
 
-public class Passphrase
+namespace MPass;
+
+public class Passphrase : IEnumerable<string>
 {
-    private readonly string _passphrase;
-    public override string ToString()
-    {
-        return _passphrase;
-    }
+    private IList<ITokenSource> _tokenSequence;
 
     public Passphrase(IList<ITokenSource> tokenSequence)
     {
-        _passphrase = string.Concat(tokenSequence.Select(t => t.GetToken()).ToList());
+        _tokenSequence = tokenSequence;
+    }
+
+    public string GetPassphrase()
+    {
+        return string.Concat(_tokenSequence.Select(t => t.GetToken()).ToList());
+    }
+
+    public IEnumerator<string> GetEnumerator()
+    {
+        while (true)
+        {
+            yield return GetPassphrase();
+        }
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
     }
 }

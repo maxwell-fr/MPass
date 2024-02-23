@@ -25,7 +25,7 @@ public class PassphraseTests
             new TokenWord(_testWords)
         };
 
-        var phrase = new Passphrase(phraseSequence).ToString();
+        var phrase = new Passphrase(phraseSequence).GetPassphrase();
         var elements = phrase.Split(" ");
 
         Assert.DoesNotThrow(() => int.Parse(elements[0]));

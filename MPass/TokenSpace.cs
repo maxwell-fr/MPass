@@ -5,23 +5,10 @@ namespace MPass;
 /// <summary>
 /// A token source that returns only a single space character.
 /// </summary>
-public class TokenSpace : ITokenSource
+public class TokenSpace : TokenChar
 {
-    public string GetToken()
-    {
-        return " ";
+
+    public TokenSpace() : base(new[]{" "}) {
     }
 
-    public IEnumerator<string> GetEnumerator()
-    {
-        while(true)
-        {
-            yield return GetToken();
-        }
-    }
-
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator();
-    }
 }

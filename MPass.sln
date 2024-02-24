@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MPass", "MPass\MPass.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MPassTests", "MPassTests\MPassTests.csproj", "{70F44B66-EA26-4E22-880A-E89EEB2066EB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MPassDemo", "MPassDemo\MPassDemo.csproj", "{108BA490-62D4-4E7D-8985-8872C2E9F2C6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{70F44B66-EA26-4E22-880A-E89EEB2066EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70F44B66-EA26-4E22-880A-E89EEB2066EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70F44B66-EA26-4E22-880A-E89EEB2066EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{108BA490-62D4-4E7D-8985-8872C2E9F2C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{108BA490-62D4-4E7D-8985-8872C2E9F2C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{108BA490-62D4-4E7D-8985-8872C2E9F2C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{108BA490-62D4-4E7D-8985-8872C2E9F2C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -18,6 +18,7 @@
 
 
     <StackPanel Orientation="Vertical">
+        <Button Command="{Binding OpenWordListFile}">Use Custom Word List</Button>
         <TextBox Watermark="Specification" Text="{Binding SpecString}" />
         <TextBox Watermark="Passphrase" Text="{Binding Passphrase}" IsReadOnly="True" />
         <TextBlock Text="{Binding Helptext}" />

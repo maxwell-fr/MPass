@@ -23,7 +23,7 @@ public class TokenWord : ITokenSource
 
     public TokenWord(IEnumerable<string> wordList, Func<string, string> transform)
     {
-        _wordlist = wordList.ToArray();
+        _wordlist = wordList.Where(w => w.Length > 3).ToArray();
         _transform = transform;
 
         if (_wordlist.Length < 1)

@@ -1,0 +1,18 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:MPassDemo.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="100" d:DesignHeight="100"
+             x:Class="MPassDemo.Views.PassphraseFieldView"
+             x:DataType="viewModels:PassphraseFieldViewModel">
+
+    <StackPanel Orientation="Horizontal">
+        <Label Content="{Binding Label}" />
+        <Button Command="{Binding RegeneratePassphrase}">
+                <PathIcon Data="{StaticResource arrow_sync_circle_regular}" />
+        </Button>
+        <TextBox IsReadOnly="True" Text="{Binding SpecString}" MinWidth="150" />
+        <TextBox IsReadOnly="True" Text="{Binding PassphraseResult}" MinWidth="150" />
+    </StackPanel>
+</UserControl>

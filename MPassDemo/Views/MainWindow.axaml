@@ -3,11 +3,11 @@
         xmlns:vm="using:MPassDemo.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="550"
+        mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="750"
         x:Class="MPassDemo.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Width="450" Height="550"
+        Width="600" Height="750"
         Title="MPassDemo">
 
     <Design.DataContext>
@@ -22,5 +22,8 @@
         <TextBox Watermark="Specification" Text="{Binding SpecString}" />
         <TextBox Watermark="Passphrase" Text="{Binding Passphrase}" IsReadOnly="True" />
         <TextBlock Text="{Binding Helptext}" />
+        <ListBox ItemsSource="{Binding PassphraseFields}">
+
+        </ListBox>
     </StackPanel>
 </Window>

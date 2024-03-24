@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Reactive;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
 using Avalonia.Platform.Storage;
+using DynamicData.Binding;
 using MPassDemo.Models;
 using ReactiveUI;
 
@@ -59,8 +61,8 @@ public class MainWindowViewModel : ViewModelBase
         (space) - space character
         ? - shuffle the sequence 
         Examples:
-        i w w 000$ => Medium test phrase 123!
-        ii00$ => TestPhrase11#
+        i w w ###$ => Medium test phrase 123!
+        ii##$ => TestPhrase11#
         zzzzzz => t7Eq#r
 
         """;
@@ -68,10 +70,26 @@ public class MainWindowViewModel : ViewModelBase
     public ReactiveCommand<Unit, Unit> OpenWordListFile { get; }
     public Interaction<Unit, IStorageFile?> FileDialog { get; }
 
+    public ObservableCollection<PassphraseFieldViewModel> PassphraseFields { get; } = new();
+
     public MainWindowViewModel()
     {
         OpenWordListFile = ReactiveCommand.CreateFromTask(OpenFileAsync);
         FileDialog = new Interaction<Unit, IStorageFile?>();
+
+        //Some test fields for demonstration
+        PassphraseFields.Add(new PassphraseFieldViewModel(
+            new PassphraseFieldModel("Test1", "W w w #####", new PassphraseSpecModel())
+        ));
+        PassphraseFields.Add(new PassphraseFieldViewModel(
+            new PassphraseFieldModel("Test2", "w W w W", new PassphraseSpecModel())
+        ));
+        PassphraseFields.Add(new PassphraseFieldViewModel(
+            new PassphraseFieldModel("Test3", "flarh", new PassphraseSpecModel())
+        ));
+        PassphraseFields.Add(new PassphraseFieldViewModel(
+            new PassphraseFieldModel("Test4", "", new PassphraseSpecModel())
+        ));
     }
 
     private async Task OpenFileAsync()

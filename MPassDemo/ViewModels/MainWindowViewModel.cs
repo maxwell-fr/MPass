@@ -46,15 +46,18 @@ public class MainWindowViewModel : ViewModelBase
     public string Helptext =>
         """
         Use one or more of the following keys in the Specification:
-        w - lowercase word (examnple)
-        u - uppercase word (EXAMPLE)
+        w - lowercase word (example)
+        W - uppercase word (EXAMPLE)
         i - initial caps word (Example)
         r - random cap word (exAmple)
+        a - random lowercase letter
+        A - random uppercase letter
         x - random single alphanumeric character
-        z - random single alphanumeric or symbol character
-        0 - digit, 0-9
+        # - digit, 0-9
         $ - symbol
+        z - combination of x and $
         (space) - space character
+        ? - shuffle the sequence 
         Examples:
         i w w 000$ => Medium test phrase 123!
         ii00$ => TestPhrase11#

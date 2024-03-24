@@ -27,6 +27,21 @@ public class TokenChar : ITokenSource
     /// <summary>
     /// Provide a token generator with a custom charset.
     /// </summary>
+    /// <param name="charset">A string of characters. Any string is allowed as long as it is not empty.</param>
+    /// <exception cref="ArgumentException"></exception>
+    public TokenChar(string charset)
+    {
+         Charset = charset;
+         if (Charset.Length < 1)
+         {
+             Charset = UpperAsciiLetters;
+             throw new ArgumentException("No characters in charset.");
+         }
+    }
+
+    /// <summary>
+    /// Provide a token generator with a custom charset.
+    /// </summary>
     /// <param name="charset">An array of strings. The list of characters comprises the characters available
     /// for generation. Duplicates are allowed; de-duplication is not performed.</param>
     /// <exception cref="ArgumentException">Thrown if there are zero characters in the set.</exception>

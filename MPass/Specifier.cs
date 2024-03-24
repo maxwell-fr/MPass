@@ -18,15 +18,18 @@ public class Specifier
     ///
     /// Specifier string syntax is simple.
     /// One or more of the following keys:
-    ///     w - lowercase word (examnple)
+    ///     w - lowercase word (example)
     ///     W - uppercase word (EXAMPLE)
     ///     i - initial caps word (Example)
     ///     r - random cap word (exAmple)
+    ///     a - random lowercase letter
+    ///     A - random uppercase letter
     ///     x - random single alphanumeric character
     ///     z - random single alphanumeric or symbol character (combines x and $)
     ///     # - digit, 0-9
     ///     $ - symbol
     ///     (space) - space character
+    ///     ? - shuffle the sequence (if present, the token order will be randomized)
     /// Examples:
     ///     "i w w ###$" => "Medium test phrase 123!"
     ///     "ii##$" => "TestPhrase11#"
@@ -44,9 +47,15 @@ public class Specifier
 
         var rand = new Random();
         var tokenSequence = new List<ITokenSource>();
+        bool shuffle = false;
 
         foreach(var c in s)
         {
+            if(c == '?')
+            {
+                shuffle = true;
+                continue;
+            }
             ITokenSource tok = c switch
             {
                 'w' => new TokenWord(_words, w => w.ToLower()),
@@ -59,6 +68,8 @@ public class Specifier
                     sb[idx] = char.ToUpper(sb[idx]);
                     return sb.ToString();
                 }),
+                'a' => new TokenChar(TokenChar.LowerAsciiLetters),
+                'A' => new TokenChar(TokenChar.UpperAsciiLetters),
                 'x' => new TokenChar(new string[] { TokenChar.Numerals, TokenChar.LowerAsciiLetters, TokenChar.UpperAsciiLetters }),
                 'z' => new TokenChar(new string[] { TokenChar.Numerals, TokenChar.LowerAsciiLetters, TokenChar.UpperAsciiLetters, _symbols.Charset }),
                 '$' => _symbols,
@@ -70,6 +81,6 @@ public class Specifier
             tokenSequence.Add(tok);
         }
 
-        return new Passphrase(tokenSequence);
+        return new Passphrase(tokenSequence, shuffle);
     }
 }

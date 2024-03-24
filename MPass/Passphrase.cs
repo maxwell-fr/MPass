@@ -4,16 +4,29 @@ namespace MPass;
 
 public class Passphrase : IEnumerable<string>
 {
-    private IList<ITokenSource> _tokenSequence;
+    private readonly IList<ITokenSource> _tokenSequence;
+    private readonly bool _shuffle;
+    private readonly Random _rng;
 
-    public Passphrase(IList<ITokenSource> tokenSequence)
+    public Passphrase(IList<ITokenSource> tokenSequence, bool shuffle = false)
     {
         _tokenSequence = tokenSequence;
+        _rng = new Random();
+        _shuffle = shuffle;
     }
 
     public string GetPassphrase()
     {
-        return string.Concat(_tokenSequence.Select(t => t.GetToken()).ToList());
+        var seq = Enumerable.Range(0, _tokenSequence.Count);
+        if (_shuffle)
+        {
+            seq = seq.OrderBy(r => _rng.Next());
+        }
+
+        return string.Concat(_tokenSequence.Zip(seq, (n, i) => (n, i))
+                                            .OrderBy(t => t.Item2)
+                                            .Select(t => t.Item1.GetToken())
+                                            .ToList());
     }
 
     public IEnumerator<string> GetEnumerator()

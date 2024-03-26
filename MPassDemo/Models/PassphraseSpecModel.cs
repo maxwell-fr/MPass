@@ -2,6 +2,9 @@
 namespace MPassDemo.Models;
 using MPass;
 
+/// <summary>
+/// The spec model used to generate the passphrases based on supplied words, symbols, and spec string.
+/// </summary>
 public class PassphraseSpecModel
 {
     private static readonly string[] DefaultWordList = {
@@ -59,14 +62,25 @@ public class PassphraseSpecModel
 
     private readonly Specifier _specifier;
 
+    /// <summary>
+    /// Uses the default word list.
+    /// </summary>
     public PassphraseSpecModel() : this(DefaultWordList)
     {
     }
 
+    /// <summary>
+    /// Uses the specified wordlist.
+    /// </summary>
+    /// <param name="wordList">The wordlist. The string will be split on whitespace to form the list.</param>
     public PassphraseSpecModel(string wordList) : this(wordList.Split(' ', '\n', '\r', '\t'))
     {
     }
 
+    /// <summary>
+    /// Uses the specified wordlist.
+    /// </summary>
+    /// <param name="wordList">An array of words.</param>
     public PassphraseSpecModel(string[] wordList)
     {
         var symbols = new TokenChar(new[]{TokenChar.EzAsciiSymbols});
@@ -74,6 +88,11 @@ public class PassphraseSpecModel
         _specifier = new Specifier(words, symbols);
     }
 
+    /// <summary>
+    /// Parse a given string as a spec string and return the resulting password.
+    /// </summary>
+    /// <param name="s">The spec string to parse.</param>
+    /// <returns></returns>
     public string ParseAndGet(string s)
     {
         return _specifier.Parse(s).GetPassphrase();
